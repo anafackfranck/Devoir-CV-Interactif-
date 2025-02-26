@@ -1,0 +1,113 @@
+
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+        .resume-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            font-family: 'Roboto', sans-serif;
+            background-color: white;
+        }
+
+        .header {
+            background-color: #4A5568;
+            color: white;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .profile-photo {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border: 4px solid white;
+        }
+
+        .header-text h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        .header-text h2 {
+            font-size: 1.5rem;
+            font-style: italic;
+            font-weight: 300;
+            margin: 0.5rem 0;
+        }
+
+        .content {
+            display: flex;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .left-column {
+            flex: 1;
+            max-width: 300px;
+        }
+
+        .right-column {
+            flex: 2;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            background-color: black;
+            color: white;
+            padding: 0.5rem 1rem;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0.5rem 0;
+        }
+
+        .skills-list,
+        .languages-list,
+        .hobbies-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .skills-list li,
+        .languages-list li,
+        .hobbies-list li {
+            margin: 0.5rem 0;
+        }
+
+        .experience-item,
+        .education-item {
+            margin: 1.5rem 0;
+        }
+
+        .date {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .experience-content h4,
+        .education-content h4 {
+            margin: 0.5rem 0;
+            font-weight: bold;
+        }
+
+        .education-content h5 {
+            margin: 0.5rem 0;
+            color: #666;
+        }
+
+        .description {
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+   
