@@ -50,7 +50,7 @@
                 <label for="name">Description</label><br>
                 <textarea id="description" placeholder="Brève description..." class="w-full mt-2 p-2 border rounded" oninput="updateCV()"></textarea>
                 <label for="name">Téléphone</label><br>
-                <input type="tel" id="phone" placeholder="Téléphone" class="w-full mt-2 p-2 border rounded" oninput="updateCV()">
+                <input type="number" id="phone" placeholder="Téléphone" class="w-full mt-2 p-2 border rounded" oninput="updateCV()">
                 <label for="name">Adresse</label><br>
                 <input type="text" id="address" placeholder="Adresse" class="w-full mt-2 p-2 border rounded" oninput="updateCV()">
                 <input type="file" id="profilePicture" class="w-full p-2 border rounded" accept="image/*" onchange="updateProfilePicture(event)">
@@ -58,9 +58,9 @@
                 <h2 class="text-2xl text-gray-800 mt-6 mb-5">Expériences Professionnelles</h2>
                 <div id="experiencesSection">
                     <div class="mb-4 flex items-center">
-                        <input type="text" name="experienceYear[]" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Année" required>
-                        <input type="text" name="experiencePosition[]" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Poste" required>
-                        <input type="text" name="experienceDescription[]" class="mt-1 block w-1/2 border border-gray-300 rounded p-2" placeholder="Description" required>
+                        <input type="text" name="experienceYear[]" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Année" required oninput="updateCV()">
+                        <input type="text" name="experiencePosition[]" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Poste" required oninput="updateCV()">
+                        <input type="text" name="experienceDescription[]" class="mt-1 block w-1/2 border border-gray-300 rounded p-2" placeholder="Description" required oninput="updateCV()">
                         <button type="button" class="ml-2 bg-green-500 text-white py-2 px-4 rounded" onclick="addExperience()">+</button>
                     </div>
                 </div>
@@ -118,7 +118,7 @@
                                             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                                             <circle cx="12" cy="10" r="3"></circle>
                                         </svg>
-                                        <span id="previewAddress">Mon adresse postale</span>
+                                        <span id="previewAddress">Adresse</span>
                                     </div>
                                     <div class="detail-item">
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -184,45 +184,16 @@
                             <div class="section">
                                 <h3 class="section-title">EXPÉRIENCES PROFESSIONNELLES</h3>
                                 <div class="experience-item">
-                                    <div class="date">sept. 2016 - nov. 2018</div>
+                                    <div class="date"><span id="laDate">sept. 2016 - nov. 2018</span></div>
                                     <div class="experience-content">
                                         <h4>POSTE OCCUPÉ - ENTREPRISE</h4>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                                     </div>
                                 </div>
-                                <div class="experience-item">
-                                    <div class="date">sept. 2016 - nov. 2018</div>
-                                    <div class="experience-content">
-                                        <h4>POSTE OCCUPÉ - ENTREPRISE</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    </div>
-                                </div>
-                                <div class="experience-item">
-                                    <div class="date">sept. 2016 - nov. 2018</div>
-                                    <div class="experience-content">
-                                        <h4>POSTE OCCUPÉ - ENTREPRISE</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    </div>
-                                </div>
+                                
                             </div>
                             <div class="section">
                                 <h3 class="section-title">FORMATIONS</h3>
-                                <div class="education-item">
-                                    <div class="date">sept. 2016 - nov. 2018</div>
-                                    <div class="education-content">
-                                        <h4>DIPLÔME</h4>
-                                        <h5>ETABLISSEMENT</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    </div>
-                                </div>
-                                <div class="education-item">
-                                    <div class="date">sept. 2016 - nov. 2018</div>
-                                    <div class="education-content">
-                                        <h4>DIPLÔME</h4>
-                                        <h5>ETABLISSEMENT</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    </div>
-                                </div>
                                 <div class="education-item">
                                     <div class="date">sept. 2016 - nov. 2018</div>
                                     <div class="education-content">

@@ -2,15 +2,14 @@ function updateCV() {
     document.getElementById("previewFullName").innerText = document.getElementById("fullName").value || "Nom";
     document.getElementById("previewFirstName").innerText = document.getElementById("firstName").value || "Prenom";
     document.getElementById("previewJobTitle").innerText = document.getElementById("jobTitle").value || "Titre du poste";
-    document.getElementById("cvAge").innerText = "Âge: " + (document.getElementById("age").value || "");
-    document.getElementById("cvGender").innerText = "Sexe: " + (document.getElementById("gender").value || "");
-    document.getElementById("previewJobTitle").innerText = document.getElementById("jobTitle").value || "Titre du Poste";
-    const status = document.querySelector('input[name="currentStatus"]:checked');
-    document.getElementById("cvCurrentStatus").innerText =status ? status.value : "Situation Actuelle";
-    document.getElementById("cvDescription").innerText = document.getElementById("description").value || "Brève description...";
-    document.getElementById("previewEmail").innerText = "Email: " + (document.getElementById("email").value || "");
-    document.getElementById("cvPhone").innerText = "Téléphone: " + (document.getElementById("phone").value || "");
-    document.getElementById("cvAddress").innerText = "Adresse: " + (document.getElementById("address").value || "");
+    document.getElementById("previewEmail").innerText = document.getElementById("email").value || "exemple@gmail.com";
+    const status = document.querySelector("input[name='currentStatus']:checked");
+    document.getElementById("cvCurrentStatus").innerText = status? status.value : "situation Actuelle";
+    document.getElementById("previewDescription").innerText = document.getElementById("description").value || "Brève description...";
+    document.getElementById("previewPhone").innerText = document.getElementById("phone").value || "Téléphone";
+    document.getElementById("previewAddress").innerText = document.getElementById("address").value || "Adresse";
+    document.getElementById("laDate").innerText = document.getElementById("experienceYear[]").value || "experience";
+    
 }
 // Fonction pour ajouter une compétence
 function addSkill() {
@@ -55,4 +54,35 @@ function addEducation() {
 // Fonction pour supprimer un élément
 function removeElement(button) {
     button.parentElement.remove();
+}
+function addLanguage() {
+    let container = document.getElementById("languageFields");
+    let div = document.createElement("div");
+    div.classList.add("mb-2", "flex", "items-center", "gap-2");
+    div.innerHTML = `
+        <input type="text" placeholder="Langue" class="w-1/2 p-2 border rounded" oninput="updateLanguages()">
+        <input type="range" min="0" max="100" value="50" class="w-1/2" oninput="updateLanguages()">
+        <span class="w-10">50%</span>
+    `;
+    container.appendChild(div);
+    updateLanguages();
+}
+function updateLanguages() {
+    let container = document.getElementById("previewLanguages");
+    container.innerHTML = "<h3 class='text-xl font-semibold'>Langues</h3>";
+    let inputs = document.getElementById("languageFields").children;
+    for (let input of inputs) {
+        let language = input.children[0].value;
+        let level = input.children[1].value;
+        let percentage = input.children[2];
+        percentage.innerText = level + "%";
+        if (language) {
+            container.innerHTML += `
+                <p>${language} - ${level}%</p>
+                <div class="w-full bg-gray-200 rounded-full h-2.5 mb-2">
+                    <div class="bg-blue-500 h-2.5 rounded-full" style="width:${level}%"></div>
+                </div>
+            `;
+        }
+    }
 }
