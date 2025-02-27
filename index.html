@@ -54,37 +54,54 @@
                 <label for="name">Adresse</label><br>
                 <input type="text" id="address" placeholder="Adresse" class="w-full mt-2 p-2 border rounded" oninput="updateCV()">
                 <input type="file" id="profilePicture" class="w-full p-2 border rounded" accept="image/*" onchange="updateProfilePicture(event)">
-
+                
+                <!-- ajouter une experience -->
                 <h2 class="text-2xl text-gray-800 mt-6 mb-5">Expériences Professionnelles</h2>
-                <div id="experiencesSection">
-                    <div class="flex gap-6 shadow-md">
+                <div id="experiencesSection" class="shadow-md p-10">
+                    <div class="flex gap-3 ">
                         <div>
                             <label for="Nom de l'entreprise">Nom de l'entreprise</label><br>
-                            <input type="text" id="entreprise" placeholder="Nom de l'entreprise" class="w-[245px] mt-2 p-2 border border-gray-300 rounded mb-2" oninput="updateCV()">
+                            <input type="text" id="entreprise" placeholder="Nom de l'entreprise" class="w-[200px] mt-2 p-2 border border-gray-300 rounded mb-2" oninput="updateCV()">
+                            <label for="Nom de l'entreprise">Date de debut</label><br>
+                            <input type="Date" id="duree" placeholder="Date de debut" class="w-[200px] mt-2 p-2 border border-gray-300 rounded mb-2" oninput="updateCV()">
                         </div>
     
                         <div>
                             <label for="poste occupé">Poste occupé</label><br>
-                            <input type="text" id="poste" placeholder="Poste occupé" class="mt-2 w-full p-2 border border-gray-300 rounded" oninput="updateCV()">
+                            <input type="text" id="poste" placeholder="Poste occupé" class="mt-2 w-[200px] p-2 border border-gray-300 rounded" oninput="updateCV()">
+                            <label for="Nom de l'entreprise">Date de Fin</label><br>
+                            <input type="Date" id="duree" placeholder="Date de debut" class="w-[200px] mt-4 p-2 border border-gray-300 rounded mb-2" oninput="updateCV()">
+                        </div>
+                      </div>
+                      <label for="name">Description</label><br>
+                      <textarea id="description" placeholder="Decrivez votre metier..." class="w-full mt-2 p-2 border rounded" oninput="updateCV()"></textarea>            
+                </div>
+                <button type="button" onclick="addSkill()" class="bg-green-500 text-white p-2 rounded">Ajouter Expérience </button>
+                
+                <!-- ajouter une formation -->
+                <h2 class="text-2xl text-gray-800 mt-6 mb-5">Formations</h2>
+                 <div id="educationSection" class="shadow-md p-10">
+                    <div class="flex gap-3 ">
+                        <div>
+                        <label for="Diplômes obtenus">Diplômes obtenus</label><br>
+                        <input type="text" id="diplome" placeholder="Diplômes obtenus" class="w-full mt-2 p-2 border border-gray-300 rounded mb-2" oninput="updateCV()">
+                        </div>
+                        <div>
+                            <label for="Diplômes obtenus">établissement</label><br>
+                            <input type="text" id="diplome" placeholder="Diplômes obtenus" class="w-full mt-2 p-2 border border-gray-300 rounded mb-2" oninput="updateCV()">
+                        </div>
+                        <div>
+                            <label for="année d'obtention">année d'obtention</label><br>
+                            <input type="date" id="année_obtention" class="w-full mt-2 p-2 border border-gray-300 rounded mb-2" oninput="updateCV()">
                         </div>
                     </div>
-                    <!-- <div class="mb-4 flex items-center">
-                        <input type="Date" name="experienceYear" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Année" required oninput="updateCV()">
-                        <input type="text" name="experiencePosition" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Poste" required oninput="updateCV()">
-                        <input type="text" name="experienceDescription" class="mt-1 block w-1/2 border border-gray-300 rounded p-2" placeholder="Description" required oninput="updateCV()">
-                        <button type="button" class="ml-2 bg-green-500 text-white py-2 px-4 rounded" onclick="addExperience()">+</button>
-                    </div> -->
-                </div>
+                 </div>
+                <button type="button" onclick="addSkill()" class="bg-green-500 text-white p-2 rounded">Ajouter Formation </button>
+                
+                <!-- ajouter des competences -->
+                <h2 class="text-2xl text-gray-800 mt-6 mb-5">Ajouter des competences</h2>
+                <input type="text" name="competence" id="competence" placeholder="Nouvelle competence">
 
-                <h2 class="text-2xl text-gray-800 mt-6 mb-5">Formations</h2>
-                <div id="educationSection">
-                    <div class="mb-4 flex items-center">
-                        <input type="text" name="educationYear[]" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Année" required>
-                        <input type="text" name="educationDegree[]" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Diplôme" required>
-                        <input type="text" name="educationInstitution[]" class="mt-1 block w-1/2 border border-gray-300 rounded p-2" placeholder="Établissement" required>
-                        <button type="button" class="ml-2 bg-green-500 text-white py-2 px-4 rounded" onclick="addEducation()">+</button>
-                    </div>
-                </div>
 
                 <h2 class="text-2xl text-gray-800 mt-6 mb-5">Centres d'Intérêt</h2>
                 <div id="educationSection">
