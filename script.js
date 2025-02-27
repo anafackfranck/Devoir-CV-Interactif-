@@ -8,7 +8,6 @@ function updateCV() {
     document.getElementById("previewDescription").innerText = document.getElementById("description").value || "Brève description...";
     document.getElementById("previewPhone").innerText = document.getElementById("phone").value || "Téléphone";
     document.getElementById("previewAddress").innerText = document.getElementById("address").value || "Adresse";
-    document.getElementById("laDate").innerText = document.getElementById("experienceYear[]").value || "experience";
     
 }
 // Fonction pour ajouter une compétence
@@ -86,3 +85,4 @@ function updateLanguages() {
         }
     }
 }
+

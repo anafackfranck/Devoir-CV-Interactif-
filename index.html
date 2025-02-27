@@ -55,30 +55,25 @@
                 <input type="text" id="address" placeholder="Adresse" class="w-full mt-2 p-2 border rounded" oninput="updateCV()">
                 <input type="file" id="profilePicture" class="w-full p-2 border rounded" accept="image/*" onchange="updateProfilePicture(event)">
 
-                <input type="tel" id="phone" placeholder="Téléphone" class="w-full mt-2 p-2 border rounded" oninput="updateCV()">
-                <label for="name">Adresse</label><br>
-                <input type="text" id="address" placeholder="Adresse" class="w-full mt-2 p-2 border rounded" oninput="updateCV()">
-                <input type="file" id="profilePicture" class="w-full p-2 border rounded" accept="image/*" onchange="updateProfilePicture(event)">
-
                 <h2 class="text-2xl text-gray-800 mt-6 mb-5">Expériences Professionnelles</h2>
                 <div id="experiencesSection">
-                    <div class="mb-4 flex items-center">
-                        <input type="text" name="experienceYear[]" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Année" required>
-                        <input type="text" name="experiencePosition[]" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Poste" required>
-                        <input type="text" name="experienceDescription[]" class="mt-1 block w-1/2 border border-gray-300 rounded p-2" placeholder="Description" required>
-                        <button type="button" class="ml-2 bg-green-500 text-white py-2 px-4 rounded" onclick="addExperience()">+</button>
+                    <div class="flex gap-6 shadow-md">
+                        <div>
+                            <label for="Nom de l'entreprise">Nom de l'entreprise</label><br>
+                            <input type="text" id="entreprise" placeholder="Nom de l'entreprise" class="w-[245px] mt-2 p-2 border border-gray-300 rounded mb-2" oninput="updateCV()">
+                        </div>
+    
+                        <div>
+                            <label for="poste occupé">Poste occupé</label><br>
+                            <input type="text" id="poste" placeholder="Poste occupé" class="mt-2 w-full p-2 border border-gray-300 rounded" oninput="updateCV()">
+                        </div>
                     </div>
-                </div>
->>>>>>> c2c4716 (commit 1)
-
-                <h2 class="text-2xl text-gray-800 mt-6 mb-5">Expériences Professionnelles</h2>
-                <div id="experiencesSection">
-                    <div class="mb-4 flex items-center">
-                        <input type="text" name="experienceYear[]" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Année" required oninput="updateCV()">
-                        <input type="text" name="experiencePosition[]" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Poste" required oninput="updateCV()">
-                        <input type="text" name="experienceDescription[]" class="mt-1 block w-1/2 border border-gray-300 rounded p-2" placeholder="Description" required oninput="updateCV()">
+                    <!-- <div class="mb-4 flex items-center">
+                        <input type="Date" name="experienceYear" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Année" required oninput="updateCV()">
+                        <input type="text" name="experiencePosition" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Poste" required oninput="updateCV()">
+                        <input type="text" name="experienceDescription" class="mt-1 block w-1/2 border border-gray-300 rounded p-2" placeholder="Description" required oninput="updateCV()">
                         <button type="button" class="ml-2 bg-green-500 text-white py-2 px-4 rounded" onclick="addExperience()">+</button>
-                    </div>
+                    </div> -->
                 </div>
 
                 <h2 class="text-2xl text-gray-800 mt-6 mb-5">Formations</h2>
@@ -111,9 +106,10 @@
                 <h2 class="text-xl font-semibold">Langues</h2>
                 <div id="languageFields"></div>
                 <button type="button" onclick="addLanguage()" class="bg-green-500 text-white p-2 rounded">Ajouter Langue</button>
+                
+                <button type="button" id="saveButton" class="bg-green-500 text-white p-2 rounded">Enregistrer</button>
             </form>
         </div>
-
             <!-- Section de l'Aperçu du CV -->
             <div class="bg-[#BFECFF] rounded-lg shadow-md">
                 <div>
