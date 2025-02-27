@@ -8,41 +8,39 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gray-100 p-6">
-    <div class="max-w-6xl mx-auto grid grid-cols-2 gap-6">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- Formulaire -->
         <div class="bg-white p-6 rounded-lg shadow-md">
             <h1 class="text-3xl font-bold mb-6 text-center">Générateur de CV</h1>
             <form id="cvForm" class="space-y-6">
                 <h2 class="text-xl font-semibold">Informations Personnelles</h2>
-                <div class="flex gap-6">
-                    <!-- nom complet modifié en 2 champs -->
-                    <div>
-                    <label for="nom">Nom</label><br>
-                    <input type="text" id="fullName" placeholder="Nom" class="w-[245px] mt-2 p-2 border rounded mb-2" oninput="updateCV()">
-                    <label for="age">Âge</label><br>
-                    <input type="number" id="age" placeholder="Âge" class="mt-2 w-full p-2 border rounded" min="18" max="65" oninput="updateCV()">
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="flex-1">
+                        <label for="nom">Nom</label><br>
+                        <input type="text" id="fullName" placeholder="Nom" class="w-full mt-2 p-2 border rounded mb-2" oninput="updateCV()">
+                        <label for="age">Âge</label><br>
+                        <input type="number" id="age" placeholder="Âge" class="mt-2 w-full p-2 border rounded" min="18" max="65" oninput="updateCV()">
                     </div>
-
-                    <div>
-                    <label for="prenom">Prenom</label><br>
-                    <input type="text" id="firstName" placeholder="Prenom" class=" mt-2 p-2 border rounded w-[245px] mb-2" oninput="updateCV()">
-                     <!-- sexe a comme un menu deroulant -->
-                     <label for="genre">Sexe</label><br>
-                     <select id="gender" class="w-full p-2 border mt-2 rounded">
-                        <option value=""></option>
-                        <option value="Homme">Homme</option>
-                        <option value="Femme">Femme</option>
-                    </select>
+                    <div class="flex-1">
+                        <label for="prenom">Prénom</label><br>
+                        <input type="text" id="firstName" placeholder="Prénom" class="mt-2 p-2 border rounded w-full mb-2" oninput="updateCV()">
+                        <label for="genre">Sexe</label><br>
+                        <select id="gender" class="w-full p-2 border mt-2 rounded">
+                            <option value=""></option>
+                            <option value="Homme">Homme</option>
+                            <option value="Femme">Femme</option>
+                        </select>
                     </div>
                 </div>
                 <label for="name">Titre du Poste</label><br>
-                <input type="text" id="jobTitle" placeholder="Titre du Poste" class="w-full  mt-2 p-2 border rounded" oninput="updateCV()">
+                <input type="text" id="jobTitle" placeholder="Titre du Poste" class="w-full mt-2 p-2 border rounded" oninput="updateCV()">
+
                 <h2 class="text-xl font-semibold">Situation Actuelle</h2>
-                <div class="flex space-x-4">
-                    <label><input type="radio" name="currentStatus" value="Étudiant" onclick="updateCV()"> Étudiant</label>
-                    <label><input type="radio" name="currentStatus" value="En recherche d'emploi" onclick="updateCV()"> En recherche d'emploi</label>
-                    <label><input type="radio" name="currentStatus" value="Employé" onclick="updateCV()"> Employé</label>
-                    <label><input type="radio" name="currentStatus" value="Freelance" onclick="updateCV()"> Freelance</label>
+                <div class="flex flex-col md:flex-row space-x-4">
+                    <label class="flex items-center"><input type="radio" name="currentStatus" value="Étudiant" onclick="updateCV()"> Étudiant</label>
+                    <label class="flex items-center"><input type="radio" name="currentStatus" value="En recherche d'emploi" onclick="updateCV()"> En recherche d'emploi</label>
+                    <label class="flex items-center"><input type="radio" name="currentStatus" value="Employé" onclick="updateCV()"> Employé</label>
+                    <label class="flex items-center"><input type="radio" name="currentStatus" value="Freelance" onclick="updateCV()"> Freelance</label>
                 </div>
 
                 <label for="name">Email</label><br>
@@ -54,196 +52,197 @@
                 <label for="name">Adresse</label><br>
                 <input type="text" id="address" placeholder="Adresse" class="w-full mt-2 p-2 border rounded" oninput="updateCV()">
                 <input type="file" id="profilePicture" class="w-full p-2 border rounded" accept="image/*" onchange="updateProfilePicture(event)">
-                
-                <!-- ajouter une experience -->
+
                 <h2 class="text-2xl text-gray-800 mt-6 mb-5">Expériences Professionnelles</h2>
                 <div id="experiencesSection" class="shadow-md p-10">
-                    <div class="flex gap-3 ">
-                        <div>
+                    <div class="flex flex-col md:flex-row gap-3">
+                        <div class="flex-1">
                             <label for="Nom de l'entreprise">Nom de l'entreprise</label><br>
-                            <input type="text" id="entreprise" placeholder="Nom de l'entreprise" class="w-[200px] mt-2 p-2 border border-gray-300 rounded mb-2" oninput="updateCV()">
-                            <label for="Nom de l'entreprise">Date de debut</label><br>
-                            <input type="Date" id="duree" placeholder="Date de debut" class="w-[200px] mt-2 p-2 border border-gray-300 rounded mb-2" oninput="updateCV()">
+                            <input type="text" id="entreprise" placeholder="Nom de l'entreprise" class="w-full mt-2 p-2 border border-gray-300 rounded mb-2" oninput="updateCV()">
+                            <label for="duree">Date de début</label><br>
+                            <input type="date" id="duree" class="w-full mt-2 p-2 border border-gray-300 rounded mb-2" oninput="updateCV()">
                         </div>
-    
-                        <div>
-                            <label for="poste occupé">Poste occupé</label><br>
-                            <input type="text" id="poste" placeholder="Poste occupé" class="mt-2 w-[200px] p-2 border border-gray-300 rounded" oninput="updateCV()">
-                            <label for="Nom de l'entreprise">Date de Fin</label><br>
-                            <input type="Date" id="duree" placeholder="Date de debut" class="w-[200px] mt-4 p-2 border border-gray-300 rounded mb-2" oninput="updateCV()">
+                        <div class="flex-1">
+                            <label for="poste">Poste occupé</label><br>
+                            <input type="text" id="poste" placeholder="Poste occupé" class="mt-2 w-full p-2 border border-gray-300 rounded" oninput="updateCV()">
+                            <label for="dureeFin">Date de Fin</label><br>
+                            <input type="date" id="dureeFin" class="w-full mt-2 p-2 border border-gray-300 rounded mb-2" oninput="updateCV()">
                         </div>
-                      </div>
-                      <label for="name">Description</label><br>
-                      <textarea id="description" placeholder="Decrivez votre metier..." class="w-full mt-2 p-2 border rounded" oninput="updateCV()"></textarea>            
+                    </div>
+                    <label for="description">Description</label><br>
+                    <textarea id="description" placeholder="Décrivez votre métier..." class="w-full mt-2 p-2 border rounded" oninput="updateCV()"></textarea>
                 </div>
-                <button type="button" onclick="addSkill()" class="bg-green-500 text-white p-2 rounded">Ajouter Expérience </button>
-                
-                <!-- ajouter une formation -->
-                <h2 class="text-2xl text-gray-800 mt-6 mb-5">Formations</h2>
-                 <div id="educationSection" class="shadow-md p-10">
-                    <div class="flex gap-3 ">
-                        <div>
-                        <label for="Diplômes obtenus">Diplômes obtenus</label><br>
-                        <input type="text" id="diplome" placeholder="Diplômes obtenus" class="w-full mt-2 p-2 border border-gray-300 rounded mb-2" oninput="updateCV()">
-                        </div>
-                        <div>
-                            <label for="Diplômes obtenus">établissement</label><br>
+                <button type="button" onclick="addExperience()" class="bg-green-500 text-white p-2 rounded">Ajouter Expérience</button>
+
+                <h2 class="text-xl font-semibold mt-6 mb-5">Formations</h2>
+                <div id="educationSection" class="shadow-md p-10">
+                    <div class="flex flex-col md:flex-row gap-3">
+                        <div class="flex-1">
+                            <label for="diplome">Diplômes obtenus</label><br>
                             <input type="text" id="diplome" placeholder="Diplômes obtenus" class="w-full mt-2 p-2 border border-gray-300 rounded mb-2" oninput="updateCV()">
                         </div>
-                        <div>
-                            <label for="année d'obtention">année d'obtention</label><br>
-                            <input type="date" id="année_obtention" class="w-full mt-2 p-2 border border-gray-300 rounded mb-2" oninput="updateCV()">
+                        <div class="flex-1">
+                            <label for="etablissement">Établissement</label><br>
+                            <input type="text" id="etablissement" placeholder="Établissement" class="w-full mt-2 p-2 border border-gray-300 rounded mb-2" oninput="updateCV()">
+                        </div>
+                        <div class="flex-1">
+                            <label for="anneeObtention">Année d'obtention</label><br>
+                            <input type="date" id="anneeObtention" class="w-full mt-2 p-2 border border-gray-300 rounded mb-2" oninput="updateCV()">
                         </div>
                     </div>
-                 </div>
-                <button type="button" onclick="addSkill()" class="bg-green-500 text-white p-2 rounded">Ajouter Formation </button>
-                
-                <!-- ajouter des competences -->
-                <h2 class="text-2xl text-gray-800 mt-6 mb-5">Ajouter des competences</h2>
-                <input type="text" name="competence" id="competence" placeholder="Nouvelle competence">
+                </div>
+                <button type="button" onclick="addEducation()" class="bg-green-500 text-white p-2 rounded">Ajouter Formation</button>
 
-
-                <h2 class="text-2xl text-gray-800 mt-6 mb-5">Centres d'Intérêt</h2>
-                <div id="educationSection">
+                <h2 class="text-xl font-semibold mt-6 mb-5">Ajouter des compétences</h2>
+                <div id="SkillsSection">
                     <div class="mb-4 flex items-center">
-                     <input type="text" name="educationInstitution[]" class="mt-1 block border border-gray-300 rounded p-2" placeholder="Établissement" required>
-                        <button type="button" class="ml-2 bg-green-500 text-white py-2 px-4 rounded" onclick="addEducation()">+</button>
+                        <input type="text" name="competences" class="mt-1 w-full block border border-gray-300 rounded p-2" placeholder="Ajouter des compétences" required>
+                        <button type="button" class="ml-2 bg-green-500 text-white py-2 px-4 rounded" onclick="addskills()">+</button>
                     </div>
                 </div>
-                <h2 class="text-2xl text-gray-800 mt-6 mb-5">references</h2>
-                <div id="referencesSection">
+
+                <h2 class="text-xl font-semibold mt-6 mb-5">Centres d'Intérêt</h2>
+                <div id="InterestSection">
                     <div class="mb-4 flex items-center">
-                        <input type="text" name="experienceName[]" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="nom" required>
-                        <input type="text" name="experiencePosition[]" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Poste" required>
-                        <input type="text" name="experienceContact[]" class="mt-1 block w-1/2 border border-gray-300 rounded p-2" placeholder="contact" required>
-                        <button type="button" class="ml-2 bg-green-500 text-white py-2 px-4 rounded" onclick="addExperience()">+</button>
+                        <input type="text" name="interest" class="mt-1 w-full block border border-gray-300 rounded p-2" placeholder="Centre d'Intérêt" required>
+                        <button type="button" class="ml-2 bg-green-500 text-white py-2 px-4 rounded" onclick="addInterest()">+</button>
+                    </div>
+                </div>
+
+                <h2 class="text-xl font-semibold mt-6 mb-5">Références</h2>
+                <div id="referencesSection">
+                    <div class="mb-4 flex items-center gap-3">
+                        <input type="text" name="referenceName" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Nom" required>
+                        <input type="text" name="referencePosition" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Poste" required>
+                        <input type="text" name="referenceContact" class="mt-1 block w-1/2 border border-gray-300 rounded p-2" placeholder="Contact" required>
+                        <button type="button" class="ml-2 bg-green-500 text-white py-2 px-4 rounded" onclick="addReference()">+</button>
                     </div>
                 </div>
 
                 <h2 class="text-xl font-semibold">Langues</h2>
                 <div id="languageFields"></div>
                 <button type="button" onclick="addLanguage()" class="bg-green-500 text-white p-2 rounded">Ajouter Langue</button>
-                
+
                 <button type="button" id="saveButton" class="bg-green-500 text-white p-2 rounded">Enregistrer</button>
             </form>
         </div>
-            <!-- Section de l'Aperçu du CV -->
-            <div class="bg-[#BFECFF] rounded-lg shadow-md">
-                <div>
-                    <div class="header">
-                        <img src="https://placehold.co/250x250" alt="Profile Photo" class="profile-photo">
-                        <div class="header-text">
-                            <h1><span id="previewFullName">NOM</span><br><span id="previewFirstName" >PRÉNOM</span></h1>
-                            <h2><span id="previewJobTitle">Titre du poste</span></h2>
+
+        <!-- Section de l'Aperçu du CV -->
+        <div class="bg-[#BFECFF] rounded-lg shadow-md">
+            <div>
+                <div class="header">
+                    <img src="https://placehold.co/250x250" alt="Profile Photo" class="profile-photo">
+                    <div class="header-text">
+                        <h1><span id="previewFullName">NOM</span><br><span id="previewFirstName">PRÉNOM</span></h1>
+                        <h2><span id="previewJobTitle">Titre du poste</span></h2>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="left-column">
+                        <div class="section">
+                            <h3 class="section-title">PROFIL</h3>
+                            <div class="profile-details">
+                                <div class="detail-item">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                    <span id="previewAddress">Adresse</span>
+                                </div>
+                                <div class="detail-item">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                        <polyline points="22,6 12,13 2,6"></polyline>
+                                    </svg>
+                                    <span id="previewEmail">exemple@gmail.com</span>
+                                </div>
+                                <div class="detail-item">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                    </svg>
+                                    <span id="previewPhone">+237 683243392</span>
+                                </div>
+                                <div class="detail-item">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                    <span id="previewBirthdate">24/05/1997</span>
+                                </div>
+                                <div class="detail-item">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                                        <line x1="1" y1="10" x2="23" y2="10"></line>
+                                    </svg>
+                                    <p id="cvCurrentStatus">Situation Actuelle</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section">
+                            <h3 class="section-title">COMPÉTENCES</h3>
+                            <ul class="skills-list" id="previewSkills">
+                                <li>Ma compétence 1</li>
+                                <li>Ma compétence 2</li>
+                                <li>Ma compétence 3</li>
+                                <li>Ma compétence 4</li>
+                                <li>Ma compétence 5</li>
+                            </ul>
+                        </div>
+                        <div class="section">
+                            <h3 class="section-title">LANGUES</h3>
+                            <ul class="languages-list" id="previewLanguages">
+                                <li>Ma langue 1</li>
+                                <li>Ma langue 2</li>
+                                <li>Ma langue 3</li>
+                            </ul>
+                        </div>
+                        <div class="section">
+                            <h3 class="section-title">LOISIRS</h3>
+                            <ul class="hobbies-list" id="previewHobbies">
+                                <li>Mon loisir 1</li>
+                                <li>Mon loisir 2</li>
+                                <li>Mon loisir 3</li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="content">
-                        <div class="left-column">
-                            <div class="section">
-                                <h3 class="section-title">PROFIL</h3>
-                                <div class="profile-details">
-                                    <div class="detail-item">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                            <circle cx="12" cy="10" r="3"></circle>
-                                        </svg>
-                                        <span id="previewAddress">Adresse</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                                            <polyline points="22,6 12,13 2,6"></polyline>
-                                        </svg>
-                                        <span id="previewEmail">exemple@gmail.com</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                                        </svg>
-                                        <span id="previewPhone">+237 683243392</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                            <line x1="16" y1="2" x2="16" y2="6"></line>
-                                            <line x1="8" y1="2" x2="8" y2="6"></line>
-                                            <line x1="3" y1="10" x2="21" y2="10"></line>
-                                        </svg>
-                                        <span id="previewBirthdate">24/05/1997</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-                                            <line x1="1" y1="10" x2="23" y2="10"></line>
-                                        </svg>
-                                        <p id="cvCurrentStatus">Situation Actuelle</p>
-                                    </div>
+                    <div class="right-column">
+                        <p class="description" id="previewDescription">
+                            Je suis Olivia Wilson, 26 ans, chargée de communication, passionnée par l'innovation stratégique et l'engagement des audiences. Mon objectif est d'aider les organisations à améliorer leur image et à étendre leur portée avec des conseils et solutions personnalisés.
+                        </p>
+                        <div class="section">
+                            <h3 class="section-title">EXPÉRIENCES PROFESSIONNELLES</h3>
+                            <div class="experience-item">
+                                <div class="date"><span id="laDate">sept. 2016 - nov. 2018</span></div>
+                                <div class="experience-content">
+                                    <h4>POSTE OCCUPÉ - ENTREPRISE</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                                 </div>
-                            </div>
-                            <div class="section">
-                                <h3 class="section-title">COMPÉTENCES</h3>
-                                <ul class="skills-list" id="previewSkills">
-                                    <li>Ma compétence 1</li>
-                                    <li>Ma compétence 2</li>
-                                    <li>Ma compétence 3</li>
-                                    <li>Ma compétence 4</li>
-                                    <li>Ma compétence 5</li>
-                                </ul>
-                            </div>
-                            <div class="section">
-                                <h3 class="section-title">LANGUES</h3>
-                                <ul class="languages-list" id="previewLanguages">
-                                    <li>Ma langue 1</li>
-                                    <li>Ma langue 2</li>
-                                    <li>Ma langue 3</li>
-                                </ul>
-                            </div>
-                            <div class="section">
-                                <h3 class="section-title">LOISIRS</h3>
-                                <ul class="hobbies-list" id="previewHobbies">
-                                    <li>Mon loisir 1</li>
-                                    <li>Mon loisir 2</li>
-                                    <li>Mon loisir 3</li>
-                                </ul>
                             </div>
                         </div>
-                        <div class="right-column">
-                            <p class="description" id="previewDescription">
-                                Je suis Olivia Wilson, 26 ans, chargée de communication, passionnée par l'innovation stratégique et l'engagement des audiences. Mon objectif est d'aider les organisations à améliorer leur image et à étendre leur portée avec des conseils et solutions personnalisés.</p>
-                            <div class="section">
-                                <h3 class="section-title">EXPÉRIENCES PROFESSIONNELLES</h3>
-                                <div class="experience-item">
-                                    <div class="date"><span id="laDate">sept. 2016 - nov. 2018</span></div>
-                                    <div class="experience-content">
-                                        <h4>POSTE OCCUPÉ - ENTREPRISE</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    </div>
+                        <div class="section">
+                            <h3 class="section-title">FORMATIONS</h3>
+                            <div class="education-item">
+                                <div class="date">sept. 2016 - nov. 2018</div>
+                                <div class="education-content">
+                                    <h4>DIPLÔME</h4>
+                                    <h5>ETABLISSEMENT</h5>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                                 </div>
-                                
                             </div>
-                            <div class="section">
-                                <h3 class="section-title">FORMATIONS</h3>
-                                <div class="education-item">
-                                    <div class="date">sept. 2016 - nov. 2018</div>
-                                    <div class="education-content">
-                                        <h4>DIPLÔME</h4>
-                                        <h5>ETABLISSEMENT</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    </div>
+                        </div>
+                        <div class="section">
+                            <h2 class="section-title">RÉFÉRENCES</h2>
+                            <div class="reference-item">
+                                <div class="date">Nom de la Référence</div>
+                                <div class="reference-content">
+                                    <h4>POSTE</h4>
+                                    <h5>CONTACT</h5>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                                 </div>
-                            </div><div class="section">
-                                <h2 class="section-title">RÉFÉRENCES</h2>
-                                <div class="reference-item">
-                                    <div class="date">Nom de la Référence</div>
-                                    <div class="reference-content">
-                                        <h4>POSTE</h4>
-                                        <h5>CONTACT</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    </div>
-                                </div>
-                                
                             </div>
-                            
+                        </div>
                     </div>
                 </div>
             </div>

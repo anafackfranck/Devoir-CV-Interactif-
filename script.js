@@ -36,19 +36,55 @@ function addExperience() {
     experiencesSection.appendChild(newExperience);
 }
 
-// Fonction pour ajouter une formation
-function addEducation() {
+function addExperience() {
+    const experiencesSection = document.getElementById('experiencesSection');
+    const newExperience = experiencesSection.firstElementChild.cloneNode(true);
+    
+    // Créez un bouton de suppression
+    const removeButton = document.createElement('button');
+        removeButton.textContent = "x"; 
+        removeButton.style.color = "red";
+        removeButton.style.border = "none";
+        removeButton.style.background = "none";
+        removeButton.style.fontSize = "20px";
+        removeButton.style.cursor = "pointer";
+    removeButton.onclick = function() {
+        experiencesSection.removeChild(newExperience);
+    };
+    
+    // Ajoutez le bouton de suppression à la nouvelle expérience
+    newExperience.appendChild(removeButton);
+    
+    // Ajoutez la nouvelle expérience à la section
+    experiencesSection.appendChild(newExperience);
+}
+
+function addEducation(){
     const educationSection = document.getElementById('educationSection');
-    const newEducation = document.createElement('div');
-    newEducation.className = 'mb-4 flex items-center';
-    newEducation.innerHTML = `
-        <input type="text" name="educationYear[]" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Année" required>
-        <input type="text" name="educationDegree[]" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Diplôme" required>
-        <input type="text" name="educationInstitution[]" class="mt-1 block w-1/2 border border-gray-300 rounded p-2" placeholder="Établissement" required>
-        <button type="button" class="ml-2 bg-red-500 text-white py-2 px-4 rounded" onclick="removeElement(this)">-</button>
-    `;
+    const newEducation = educationSection.firstElementChild.cloneNode(true);
+
+    //creer un bouton de suppression
+    const Buttonsupprimer = document.createElement('button');
+        Buttonsupprimer.textContent = "x"; 
+        Buttonsupprimer.style.color = "red";
+        Buttonsupprimer.style.border = "none";
+        Buttonsupprimer.style.background = "none";
+        Buttonsupprimer.style.fontSize = "20px";
+        Buttonsupprimer.style.cursor = "pointer";
+        Buttonsupprimer.onclick = function() {
+    educationSection.removeChild(newEducation);
+    };
+
+    // Ajoutez le bouton de suppression à la nouvelle expérience
+    newExperience.appendChild(Buttonsupprimer);
+
+    // Ajoutez la nouvelle expérience à la section
     educationSection.appendChild(newEducation);
 }
+
+
+
+
 
 // Fonction pour supprimer un élément
 function removeElement(button) {
