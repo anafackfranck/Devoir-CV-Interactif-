@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de CV</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+    <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
+        <h1 class="text-3xl font-bold mb-6 text-center">Générateur de CV</h1>
+        <form id="cvForm" class="space-y-6">
+            <!-- Informations personnelles -->
+            <h2 class="text-xl font-semibold">Informations Personnelles</h2>
+            <div class="grid grid-cols-2 gap-4">
+                <input type="text" id="fullName" placeholder="Nom Complet" class="w-full p-2 border rounded">
+                <input type="number" id="age" placeholder="Âge" class="w-full p-2 border rounded" min="18" max="65">
+                <select id="gender" class="w-full p-2 border rounded">
+                    <option value="">Sexe</option>
+                    <option value="Homme">Homme</option>
+                    <option value="Femme">Femme</option>
+                </select>
+                <input type="text" id="jobTitle" placeholder="Titre du Poste" class="w-full p-2 border rounded">
+                <input type="text" id="currentStatus" placeholder="Situation Actuelle" class="w-full p-2 border rounded">
+                <input type="email" id="email" placeholder="Email" class="w-full p-2 border rounded">
+                <input type="tel" id="phone" placeholder="Téléphone" class="w-full p-2 border rounded">
+                <input type="text" id="address" placeholder="Adresse" class="w-full p-2 border rounded">
+                <input type="file" id="profilePicture" class="w-full p-2 border rounded">
+            </div>
+            <textarea id="description" placeholder="Brève description..." class="w-full p-2 border rounded"></textarea>
+
+            <!-- Expériences Professionnelles -->
+            <h2 class="text-xl font-semibold">Expériences Professionnelles</h2>
+            <div id="experienceFields"></div>
+            <button type="button" onclick="addExperience()" class="bg-green-500 text-white p-2 rounded">Ajouter Expérience</button>
+
+            <!-- Formation -->
+            <h2 class="text-xl font-semibold">Formation</h2>
+            <div id="educationFields"></div>
+            <button type="button" onclick="addEducation()" class="bg-green-500 text-white p-2 rounded">Ajouter Formation</button>
+
+            <!-- Compétences -->
+            <h2 class="text-xl font-semibold">Compétences</h2>
+            <div id="skillsFields"></div>
+            <button type="button" onclick="addSkill()" class="bg-green-500 text-white p-2 rounded">Ajouter Compétence</button>
+
+            <!-- Centres d'intérêt -->
+            <h2 class="text-xl font-semibold">Centres d’Intérêt</h2>
+            <input type="text" id="hobbies" placeholder="Liste des loisirs et passions" class="w-full p-2 border rounded">
+
+            <!-- Références -->
+            <h2 class="text-xl font-semibold">Références</h2>
+            <div id="referenceFields"></div>
+            <button type="button" onclick="addReference()" class="bg-green-500 text-white p-2 rounded">Ajouter Référence</button>
+
+            <!-- Langues -->
+            <h2 class="text-xl font-semibold">Langues</h2>
+            <div id="languageFields"></div>
+            <button type="button" onclick="addLanguage()" class="bg-green-500 text-white p-2 rounded">Ajouter Langue</button>
+
+            <button type="submit" class="bg-blue-500 text-white p-2 rounded w-full">Générer CV</button>
+        </form>
+    </div>
+
+    <script>
+        function addExperience() {
+            let container = document.getElementById("experienceFields");
+            let div = document.createElement("div");
+            div.innerHTML = '<input type="text" placeholder="Nom de l’entreprise" class="w-full p-2 border rounded">' +
+                            '<input type="text" placeholder="Poste occupé" class="w-full p-2 border rounded">' +
+                            '<input type="text" placeholder="Durée" class="w-full p-2 border rounded">' +
+                            '<textarea placeholder="Description des missions" class="w-full p-2 border rounded"></textarea>';
+            container.appendChild(div);
+        }
+        function addEducation() {
+            let container = document.getElementById("educationFields");
+            let div = document.createElement("div");
+            div.innerHTML = '<input type="text" placeholder="Diplôme obtenu" class="w-full p-2 border rounded">' +
+                            '<input type="text" placeholder="Établissement" class="w-full p-2 border rounded">' +
+                            '<input type="text" placeholder="Année d’obtention" class="w-full p-2 border rounded">';
+            container.appendChild(div);
+        }
+        function addSkill() {
+            let container = document.getElementById("skillsFields");
+            let div = document.createElement("div");
+            div.innerHTML = '<input type="text" placeholder="Compétence" class="w-full p-2 border rounded">' +
+                            '<select class="w-full p-2 border rounded"><option>Niveau</option><option>Débutant</option><option>Intermédiaire</option><option>Expert</option></select>';
+            container.appendChild(div);
+        }
+        function addReference() {
+            let container = document.getElementById("referenceFields");
+            let div = document.createElement("div");
+            div.innerHTML = '<input type="text" placeholder="Nom" class="w-full p-2 border rounded">' +
+                            '<input type="text" placeholder="Poste" class="w-full p-2 border rounded">' +
+                            '<input type="text" placeholder="Contact" class="w-full p-2 border rounded">';
+            container.appendChild(div);
+        }
+        function addLanguage() {
+            let container = document.getElementById("languageFields");
+            let div = document.createElement("div");
+            div.innerHTML = '<input type="text" placeholder="Langue" class="w-full p-2 border rounded">' +
+                            '<select class="w-full p-2 border rounded"><option>Niveau</option><option>Débutant</option><option>Intermédiaire</option><option>Avancé</option></select>';
+            container.appendChild(div);
+        }
+    </script>
+</body>
+</html>

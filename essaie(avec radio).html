@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de CV</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+    <div class="max-w-6xl mx-auto grid grid-cols-2 gap-6">
+        <!-- Formulaire -->
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h1 class="text-3xl font-bold mb-6 text-center">Générateur de CV</h1>
+            <form id="cvForm" class="space-y-6">
+                <h2 class="text-xl font-semibold">Informations Personnelles</h2>
+                <input type="text" id="fullName" placeholder="Nom Complet" class="w-full p-2 border rounded" oninput="updateCV()">
+                <input type="number" id="age" placeholder="Âge" class="w-full p-2 border rounded" min="18" max="65" oninput="updateCV()">
+                <input type="text" id="gender" placeholder="Sexe" class="w-full p-2 border rounded" oninput="updateCV()">
+                <input type="text" id="jobTitle" placeholder="Titre du Poste" class="w-full p-2 border rounded" oninput="updateCV()">
+                
+                <h2 class="text-xl font-semibold">Situation Actuelle</h2>
+                <div class="flex space-x-4">
+                    <label><input type="radio" name="currentStatus" value="Étudiant" onclick="updateCV()"> Étudiant</label>
+                    <label><input type="radio" name="currentStatus" value="En recherche d'emploi" onclick="updateCV()"> En recherche d'emploi</label>
+                    <label><input type="radio" name="currentStatus" value="Employé" onclick="updateCV()"> Employé</label>
+                    <label><input type="radio" name="currentStatus" value="Freelance" onclick="updateCV()"> Freelance</label>
+                </div>
+                
+                <textarea id="description" placeholder="Brève description..." class="w-full p-2 border rounded" oninput="updateCV()"></textarea>
+                <input type="email" id="email" placeholder="Email" class="w-full p-2 border rounded" oninput="updateCV()">
+                <input type="tel" id="phone" placeholder="Téléphone" class="w-full p-2 border rounded" oninput="updateCV()">
+                <input type="text" id="address" placeholder="Adresse" class="w-full p-2 border rounded" oninput="updateCV()">
+                <input type="file" id="profilePicture" class="w-full p-2 border rounded" accept="image/*" onchange="updateProfilePicture(event)">
+                
+                <h2 class="text-xl font-semibold">Langues</h2>
+                <div id="languageFields"></div>
+                <button type="button" onclick="addLanguage()" class="bg-green-500 text-white p-2 rounded">Ajouter Langue</button>
+            </form>
+        </div>
+        
+        <!-- Prévisualisation du CV -->
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-3xl font-bold text-center">Prévisualisation du CV</h2>
+            <img id="cvProfilePicture" class="w-24 h-24 rounded-full mx-auto mb-4" src="" alt="Photo de profil">
+            <h3 class="text-xl font-semibold" id="cvFullName">Nom Complet</h3>
+            <p id="cvAge">Âge</p>
+            <p id="cvGender">Sexe</p>
+            <p id="cvJobTitle">Titre du Poste</p>
+            <p id="cvCurrentStatus">Situation Actuelle</p>
+            <p id="cvDescription">Brève description...</p>
+            <p id="cvEmail">Email</p>
+            <p id="cvPhone">Téléphone</p>
+            <p id="cvAddress">Adresse</p>
+            <div id="cvLanguages"></div>
+        </div>
+    </div>
+
+    <script>
+        function updateCV() {
+            document.getElementById("cvFullName").innerText = document.getElementById("fullName").value || "Nom Complet";
+            document.getElementById("cvAge").innerText = "Âge: " + (document.getElementById("age").value || "");
+            document.getElementById("cvGender").innerText = "Sexe: " + (document.getElementById("gender").value || "");
+            document.getElementById("cvJobTitle").innerText = document.getElementById("jobTitle").value || "Titre du Poste";
+            const status = document.querySelector('input[name="currentStatus"]:checked');
+            document.getElementById("cvCurrentStatus").innerText = "Situation Actuelle: " + (status ? status.value : "");
+            document.getElementById("cvDescription").innerText = document.getElementById("description").value || "Brève description...";
+            document.getElementById("cvEmail").innerText = "Email: " + (document.getElementById("email").value || "");
+            document.getElementById("cvPhone").innerText = "Téléphone: " + (document.getElementById("phone").value || "");
+            document.getElementById("cvAddress").innerText = "Adresse: " + (document.getElementById("address").value || "");
+        }
+function addLanguage() {
+            let container = document.getElementById("languageFields");
+            let div = document.createElement("div");
+            div.classList.add("mb-2", "flex", "items-center", "gap-2");
+            div.innerHTML = `
+                <input type="text" placeholder="Langue" class="w-1/2 p-2 border rounded" oninput="updateLanguages()">
+                <input type="range" min="0" max="100" value="50" class="w-1/2" oninput="updateLanguages()">
+                <span class="w-10">50%</span>
+            `;
+            container.appendChild(div);
+            updateLanguages();
+        }
+
+        function updateLanguages() {
+            let container = document.getElementById("cvLanguages");
+            container.innerHTML = "<h3 class='text-xl font-semibold'>Langues</h3>";
+            let inputs = document.getElementById("languageFields").children;
+            for (let input of inputs) {
+                let language = input.children[0].value;
+                let level = input.children[1].value;
+                let percentage = input.children[2];
+                percentage.innerText = level + "%";
+                if (language) {
+                    container.innerHTML += `
+                        <p>${language} - ${level}%</p>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5 mb-2">
+                            <div class="bg-blue-500 h-2.5 rounded-full" style="width:${level}%"></div>
+                        </div>
+                    `;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

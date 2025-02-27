@@ -4,116 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Générateur de CV Interactif</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="r.css">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gray-100">
-    <div class="container mx-auto mt-10">
-        <h1 class="text-4xl text-blue-600 mb-10 text-center">Générateur de CV Interactif</h1>
-        <div class="flex flex-col md:flex-row">
-            <!-- Section du Formulaire -->
-            <div class="md:w-1/2 px-4">
-                <form id="cvForm" action="/submit-cv" method="POST" class="bg-white p-6 rounded-lg shadow-md">
-                    <h2 class="text-2xl text-gray-800 mb-5">Informations Personnelles</h2>
-                    <div class="mb-4">
-                        <label for="fullName" class="block font-bold text-gray-700">Nom :</label>
-                        <input type="text" id="fullName" name="fullName" class="mt-1 block w-full border border-gray-300 rounded p-2" required>
-                    </div>
-                    <div class="mb-4">
-                        <label for="firstName" class="block font-bold text-gray-700">Prénom :</label>
-                        <input type="text" id="firstName" name="firstName" class="mt-1 block w-full border border-gray-300 rounded p-2" required>
-                    </div>
-                    <div class="mb-4">
-                        <label for="jobTitle" class="block font-bold text-gray-700">Métier :</label>
-                        <input type="text" id="jobTitle" name="jobTitle" class="mt-1 block w-full border border-gray-300 rounded p-2" required>
-                    </div>
-                    <div class="mb-4">
-                        <label for="profileImage" class="block font-bold">Image de Profil :</label>
-                        <input type="file" id="profileImage" name="profileImage" accept="image/*" class="mt-1 block w-full border rounded p-2">
-                    </div>
-                    <div class="section">
-                        <h2 class="text-2xl text-gray-800 mt-6 mb-5">profil</h2>
-                        <div class="mb-4">
-                            <label for="address" class="block font-bold">Adresse postale :</label>
-                            <input type="text" id="address" name="address" class="mt-1 block w-full border border-gray-300 rounded p-2" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="email" class="block font-bold">Email :</label>
-                            <input type="email" id="email" name="email" class="mt-1 block w-full border border-gray-300 rounded p-2" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="phone" class="block font-bold">Téléphone :</label>
-                            <input type="tel" id="phone" name="phone" class="mt-1 block w-full border border-gray-300 rounded p-2" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="birthdate" class="block font-bold">Date de naissance :</label>
-                            <input type="date" id="birthdate" name="birthdate" class="mt-1 block w-full border border-gray-300 rounded p-2" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="license" class="block font-bold">Permis de conduire :</label>
-                            <input type="text" id="license" name="license" class="mt-1 block w-full border border-gray-300 rounded p-2" required>
-                        </div>
-                        <button type="button" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600">+</button>
-                    </div>
-                    <h2 class="text-2xl text-gray-800 mt-6 mb-5">Compétences</h2>
-                    <div id="skillsSection">
-                        <div class="mb-4 flex items-center">
-                            <input type="text" name="skills[]" class="mt-1 block w-full border border-gray-300 rounded p-2" placeholder="Compétence" required>
-                            <button type="button" class="ml-2 bg-green-500 text-white py-2 px-4 rounded" onclick="addSkill()">+</button>
-                        </div>
+<body class="bg-gray-100 p-6">
+    <div class="max-w-6xl mx-auto grid grid-cols-2 gap-6">
+        <!-- Formulaire -->
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h1 class="text-3xl font-bold mb-6 text-center">Générateur de CV</h1>
+            <form id="cvForm" class="space-y-6">
+                <h2 class="text-xl font-semibold">Informations Personnelles</h2>
+                <div class="flex gap-6">
+                    <!-- nom complet modifié en 2 champs -->
+                    <div>
+                    <label for="nom">Nom</label><br>
+                    <input type="text" id="fullName" placeholder="Nom" class="w-[245px] mt-2 p-2 border rounded mb-2" oninput="updateCV()">
+                    <label for="age">Âge</label><br>
+                    <input type="number" id="age" placeholder="Âge" class="mt-2 w-full p-2 border rounded" min="18" max="65" oninput="updateCV()">
                     </div>
 
-                    <h2 class="text-2xl text-gray-800 mt-6 mb-5">Langues</h2>
-                    <div class="mb-4">
-                        <input type="text" id="languages" name="languages" class="mt-1 block w-full border border-gray-300 rounded p-2" placeholder="Langues parlées" required>
+                    <div>
+                    <label for="prenom">Prenom</label><br>
+                    <input type="text" id="firstName" placeholder="Prenom" class=" mt-2 p-2 border rounded w-[245px] mb-2" oninput="updateCV()">
+                     <!-- sexe a comme un menu deroulant -->
+                     <label for="genre">Sexe</label><br>
+                     <select id="gender" class="w-full p-2 border mt-2 rounded">
+                        <option value=""></option>
+                        <option value="Homme">Homme</option>
+                        <option value="Femme">Femme</option>
+                    </select>
                     </div>
-                    
-                    <h2 class="text-2xl text-gray-800 mt-6 mb-5">Loisirs</h2>
-                    <div class="mb-4">
-                        <input type="text" id="languages" name="languages" class="mt-1 block w-full border border-gray-300 rounded p-2" placeholder="mon Loisir" required>
-                    </div>
+                </div>
+                <label for="name">Titre du Poste</label><br>
+                <input type="text" id="jobTitle" placeholder="Titre du Poste" class="w-full  mt-2 p-2 border rounded" oninput="updateCV()">
+                <h2 class="text-xl font-semibold">Situation Actuelle</h2>
+                <div class="flex space-x-4">
+                    <label><input type="radio" name="currentStatus" value="Étudiant" onclick="updateCV()"> Étudiant</label>
+                    <label><input type="radio" name="currentStatus" value="En recherche d'emploi" onclick="updateCV()"> En recherche d'emploi</label>
+                    <label><input type="radio" name="currentStatus" value="Employé" onclick="updateCV()"> Employé</label>
+                    <label><input type="radio" name="currentStatus" value="Freelance" onclick="updateCV()"> Freelance</label>
+                </div>
 
-                    <h2 class="text-2xl text-gray-800 mt-6 mb-5">Expériences Professionnelles</h2>
-                    <div id="experiencesSection">
-                        <div class="mb-4 flex items-center">
-                            <input type="text" name="experienceYear[]" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Année" required>
-                            <input type="text" name="experiencePosition[]" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Poste" required>
-                            <input type="text" name="experienceDescription[]" class="mt-1 block w-1/2 border border-gray-300 rounded p-2" placeholder="Description" required>
-                            <button type="button" class="ml-2 bg-green-500 text-white py-2 px-4 rounded" onclick="addExperience()">+</button>
-                        </div>
-                    </div>
+                <label for="name">Email</label><br>
+                <input type="email" id="email" placeholder="Email" class="w-full mt-2 p-2 border rounded" oninput="updateCV()">
+                <label for="name">Description</label><br>
+                <textarea id="description" placeholder="Brève description..." class="w-full mt-2 p-2 border rounded" oninput="updateCV()"></textarea>
+                <label for="name">Téléphone</label><br>
+                <input type="tel" id="phone" placeholder="Téléphone" class="w-full mt-2 p-2 border rounded" oninput="updateCV()">
+                <label for="name">Adresse</label><br>
+                <input type="text" id="address" placeholder="Adresse" class="w-full mt-2 p-2 border rounded" oninput="updateCV()">
+                <input type="file" id="profilePicture" class="w-full p-2 border rounded" accept="image/*" onchange="updateProfilePicture(event)">
 
-                    <h2 class="text-2xl text-gray-800 mt-6 mb-5">Formations</h2>
-                    <div id="educationSection">
-                        <div class="mb-4 flex items-center">
-                            <input type="text" name="educationYear[]" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Année" required>
-                            <input type="text" name="educationDegree[]" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Diplôme" required>
-                            <input type="text" name="educationInstitution[]" class="mt-1 block w-1/2 border border-gray-300 rounded p-2" placeholder="Établissement" required>
-                            <button type="button" class="ml-2 bg-green-500 text-white py-2 px-4 rounded" onclick="addEducation()">+</button>
-                        </div>
+                <h2 class="text-2xl text-gray-800 mt-6 mb-5">Expériences Professionnelles</h2>
+                <div id="experiencesSection">
+                    <div class="mb-4 flex items-center">
+                        <input type="text" name="experienceYear[]" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Année" required>
+                        <input type="text" name="experiencePosition[]" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Poste" required>
+                        <input type="text" name="experienceDescription[]" class="mt-1 block w-1/2 border border-gray-300 rounded p-2" placeholder="Description" required>
+                        <button type="button" class="ml-2 bg-green-500 text-white py-2 px-4 rounded" onclick="addExperience()">+</button>
                     </div>
-                    <h2 class="text-2xl text-gray-800 mt-6 mb-5">references</h2>
-                    <div id="referencesSection">
-                        <div class="mb-4 flex items-center">
-                            <input type="text" name="experienceName[]" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="nom" required>
-                            <input type="text" name="experiencePosition[]" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Poste" required>
-                            <input type="text" name="experienceContact[]" class="mt-1 block w-1/2 border border-gray-300 rounded p-2" placeholder="contact" required>
-                            <button type="button" class="ml-2 bg-green-500 text-white py-2 px-4 rounded" onclick="addExperience()">+</button>
-                        </div>
-                    </div>
+                </div>
 
-                    <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-500">Générer le CV</button>
-                </form>
-            </div>
+                <h2 class="text-2xl text-gray-800 mt-6 mb-5">Formations</h2>
+                <div id="educationSection">
+                    <div class="mb-4 flex items-center">
+                        <input type="text" name="educationYear[]" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Année" required>
+                        <input type="text" name="educationDegree[]" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Diplôme" required>
+                        <input type="text" name="educationInstitution[]" class="mt-1 block w-1/2 border border-gray-300 rounded p-2" placeholder="Établissement" required>
+                        <button type="button" class="ml-2 bg-green-500 text-white py-2 px-4 rounded" onclick="addEducation()">+</button>
+                    </div>
+                </div>
+
+                <h2 class="text-2xl text-gray-800 mt-6 mb-5">Centres d'Intérêt</h2>
+                <div id="educationSection">
+                    <div class="mb-4 flex items-center">
+                     <input type="text" name="educationInstitution[]" class="mt-1 block border border-gray-300 rounded p-2" placeholder="Établissement" required>
+                        <button type="button" class="ml-2 bg-green-500 text-white py-2 px-4 rounded" onclick="addEducation()">+</button>
+                    </div>
+                </div>
+                <h2 class="text-2xl text-gray-800 mt-6 mb-5">references</h2>
+                <div id="referencesSection">
+                    <div class="mb-4 flex items-center">
+                        <input type="text" name="experienceName[]" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="nom" required>
+                        <input type="text" name="experiencePosition[]" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Poste" required>
+                        <input type="text" name="experienceContact[]" class="mt-1 block w-1/2 border border-gray-300 rounded p-2" placeholder="contact" required>
+                        <button type="button" class="ml-2 bg-green-500 text-white py-2 px-4 rounded" onclick="addExperience()">+</button>
+                    </div>
+                </div>
+
+                <h2 class="text-xl font-semibold">Langues</h2>
+                <div id="languageFields"></div>
+                <button type="button" onclick="addLanguage()" class="bg-green-500 text-white p-2 rounded">Ajouter Langue</button>
+            </form>
+        </div>
 
             <!-- Section de l'Aperçu du CV -->
-            <div class="md:w-1.5/2 p-4">
-                <div class="resume-container">
+            <div class="bg-[#BFECFF] rounded-lg shadow-md">
+                <div>
                     <div class="header">
                         <img src="https://placehold.co/250x250" alt="Profile Photo" class="profile-photo">
                         <div class="header-text">
-                            <h1 id="previewFullName">NOM PRÉNOM</h1>
-                            <h2 id="previewJobTitle">Mon métier</h2>
+                            <h1><span id="previewFullName">NOM</span><br><span id="previewFirstName" >PRÉNOM</span></h1>
+                            <h2><span id="previewJobTitle">Titre du poste</span></h2>
                         </div>
                     </div>
                     <div class="content">
@@ -155,7 +147,7 @@
                                             <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
                                             <line x1="1" y1="10" x2="23" y2="10"></line>
                                         </svg>
-                                        <span id="previewLicense">Permis B</span>
+                                        <p id="cvCurrentStatus">Situation Actuelle</p>
                                     </div>
                                 </div>
                             </div>
@@ -188,8 +180,7 @@
                         </div>
                         <div class="right-column">
                             <p class="description" id="previewDescription">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </p>
+                                Je suis Olivia Wilson, 26 ans, chargée de communication, passionnée par l'innovation stratégique et l'engagement des audiences. Mon objectif est d'aider les organisations à améliorer leur image et à étendre leur portée avec des conseils et solutions personnalisés.</p>
                             <div class="section">
                                 <h3 class="section-title">EXPÉRIENCES PROFESSIONNELLES</h3>
                                 <div class="experience-item">
@@ -258,52 +249,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-        // Fonction pour ajouter une compétence
-        function addSkill() {
-            const skillsSection = document.getElementById('skillsSection');
-            const newSkill = document.createElement('div');
-            newSkill.className = 'mb-4 flex items-center';
-            newSkill.innerHTML = `
-                <input type="text" name="skills[]" class="mt-1 block w-full border border-gray-300 rounded p-2" placeholder="Compétence" required>
-                <button type="button" class="ml-2 bg-red-500 text-white py-2 px-4 rounded" onclick="removeElement(this)">-</button>
-            `;
-            skillsSection.appendChild(newSkill);
-        }
-
-        // Fonction pour ajouter une expérience professionnelle
-        function addExperience() {
-            const experiencesSection = document.getElementById('experiencesSection');
-            const newExperience = document.createElement('div');
-            newExperience.className = 'mb-4 flex items-center';
-            newExperience.innerHTML = `
-                <input type="text" name="experienceYear[]" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Année" required>
-                <input type="text" name="experiencePosition[]" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Poste" required>
-                <input type="text" name="experienceDescription[]" class="mt-1 block w-1/2 border border-gray-300 rounded p-2" placeholder="Description" required>
-                <button type="button" class="ml-2 bg-red-500 text-white py-2 px-4 rounded" onclick="removeElement(this)">-</button>
-            `;
-            experiencesSection.appendChild(newExperience);
-        }
-
-        // Fonction pour ajouter une formation
-        function addEducation() {
-            const educationSection = document.getElementById('educationSection');
-            const newEducation = document.createElement('div');
-            newEducation.className = 'mb-4 flex items-center';
-            newEducation.innerHTML = `
-                <input type="text" name="educationYear[]" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Année" required>
-                <input type="text" name="educationDegree[]" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Diplôme" required>
-                <input type="text" name="educationInstitution[]" class="mt-1 block w-1/2 border border-gray-300 rounded p-2" placeholder="Établissement" required>
-                <button type="button" class="ml-2 bg-red-500 text-white py-2 px-4 rounded" onclick="removeElement(this)">-</button>
-            `;
-            educationSection.appendChild(newEducation);
-        }
-
-        // Fonction pour supprimer un élément
-        function removeElement(button) {
-            button.parentElement.remove();
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
