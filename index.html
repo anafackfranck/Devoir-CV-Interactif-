@@ -19,7 +19,8 @@
                         <label for="nom">Nom</label><br>
                         <input type="text" id="fullName" placeholder="Nom" class="w-full mt-2 p-2 border rounded mb-2" oninput="updateCV()">
                         <label for="age">Âge</label><br>
-                        <input type="number" id="age" placeholder="Âge" class="mt-2 w-full p-2 border rounded" min="18" max="65" oninput="updateCV()">
+                        <input type="number" id="age" placeholder="Âge" class="mt-2 w-full p-2 border rounded" min="18" max="65">
+                        <span id="ageError" style="color: red; font-size: 14px; display: none; margin-left: 10px;">⛔ L'âge doit être entre 18 et 65 ans.</span>
                     </div>
                     <div class="flex-1">
                         <label for="prenom">Prénom</label><br>
@@ -42,13 +43,27 @@
                     <label class="flex items-center"><input type="radio" name="currentStatus" value="Employé" onclick="updateCV()"> Employé</label>
                     <label class="flex items-center"><input type="radio" name="currentStatus" value="Freelance" onclick="updateCV()"> Freelance</label>
                 </div>
-
-                <label for="name">Email</label><br>
-                <input type="email" id="email" placeholder="Email" class="w-full mt-2 p-2 border rounded" oninput="updateCV()">
+                <div>
+                <label for="email">Email</label><br>
+                <input type="email" id="email" placeholder="Email" class="w-full mt-2 p-2 border rounded">
+                <span id="emailError" style="color: red; font-size: 14px; display: none; margin-left: 10px;">⛔ L'email doit se terminer par @gmail.com.</span>
+                </div>
                 <label for="name">Description</label><br>
                 <textarea id="description" placeholder="Brève description..." class="w-full mt-2 p-2 border rounded" oninput="updateCV()"></textarea>
                 <label for="name">Téléphone</label><br>
                 <input type="number" id="phone" placeholder="Téléphone" class="w-full mt-2 p-2 border rounded" oninput="updateCV()">
+                
+                 <!-- <label for="country">Pays</label><br>
+                 <select id="country" class="w-full mt-2 p-2 border rounded">
+                     <option value="ca">🇨🇦 Canada</option>
+                     <option value="cm">🇨🇲 Cameroun</option>
+                     <option value="fr">🇫🇷 France</option>
+                 </select>
+                 <div>
+                 <label for="phone">Téléphone</label><br>
+                 <input type="text" id="phone" placeholder="Téléphone" class="w-full mt-2 p-2 border rounded">
+                 <span id="phoneError" style="color: red; font-size: 14px; display: none; margin-left: 10px;">⛔ Numéro invalide.</span>
+                 </div> -->
                 <label for="name">Adresse</label><br>
                 <input type="text" id="address" placeholder="Adresse" class="w-full mt-2 p-2 border rounded" oninput="updateCV()">
                 <input type="file" id="profileImage" name="profileImage" accept="image/*" class="mt-1 block w-full border rounded p-2" onchange="loadImage(event)">
@@ -129,7 +144,7 @@
         </div>
 
         <!-- Section de l'Aperçu du CV -->
-        <div class="bg-[#BFECFF] rounded-lg shadow-md">
+        <div class="bg-[#BFECFF] rounded-lg shadow-md" id="cvPreview">
             <div>
                 <div class="header">
                     <div>

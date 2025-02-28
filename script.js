@@ -8,8 +8,85 @@ function updateCV() {
     document.getElementById("previewDescription").innerText = document.getElementById("description").value || "Brève description...";
     document.getElementById("previewPhone").innerText = document.getElementById("phone").value || "Téléphone";
     document.getElementById("previewAddress").innerText = document.getElementById("address").value || "Adresse";
-    
 }
+
+document.getElementById('age').addEventListener('input', function() {
+    let ageInput = this;
+    let ageValue = parseInt(ageInput.value, 10);
+    let errorMessage = document.getElementById('ageError');
+
+    if (ageValue < 18 || ageValue > 65 || isNaN(ageValue)) {
+        ageInput.style.borderColor = 'red'; // Bordure rouge
+        ageInput.style.backgroundColor = '#ffe6e6'; // Fond légèrement rouge
+        errorMessage.style.display = 'inline'; // Afficher le message d'erreur en ligne
+    } else {
+        ageInput.style.borderColor = ''; // Réinitialise la bordure
+        ageInput.style.backgroundColor = ''; // Réinitialise le fond
+        errorMessage.style.display = 'none'; // Cacher le message d'erreur
+    }
+});
+
+document.getElementById('email').addEventListener('input', function() {
+    let emailInput = this;
+    let emailValue = emailInput.value.trim();
+    let errorMessage = document.getElementById('emailError');
+
+    if (!emailValue.endsWith('@gmail.com') || emailValue.length < 11) {
+        emailInput.style.borderColor = 'red'; // Bordure rouge
+        emailInput.style.backgroundColor = '#ffe6e6'; // Fond légèrement rouge
+        errorMessage.style.display = 'inline'; // Afficher le message d'erreur
+    } else {
+        emailInput.style.borderColor = ''; // Réinitialise la bordure
+        emailInput.style.backgroundColor = ''; // Réinitialise le fond
+        errorMessage.style.display = 'none'; // Cacher le message d'erreur
+    }
+});
+
+
+document.getElementById('phone').addEventListener('input', validatePhone);
+document.getElementById('country').addEventListener('change', validatePhone);
+
+function validatePhone() {
+    let phoneInput = document.getElementById('phone');
+    let country = document.getElementById('country').value;
+    let errorMessage = document.getElementById('phoneError');
+    
+    let phoneValue = phoneInput.value.trim();
+    let isValid = false;
+    let regex = null;
+    let formatExample = "";
+
+    // Définition des formats selon le pays
+    if (country === "cm") { // Cameroun 🇨🇲
+        regex = /^\+2376\d{8}$/;
+        formatExample = "+2376XXXXXXXX";
+    } else if (country === "ca") { // Canada 🇨🇦
+        regex = /^\+1\d{10}$/;
+        formatExample = "+1XXXXXXXXXX";
+    } else if (country === "fr") { // France 🇫🇷
+        regex = /^\+33[67]\d{8}$/;
+        formatExample = "+33XXXXXXXXX";
+    }
+
+    // Vérification du format
+    if (regex && regex.test(phoneValue)) {
+        isValid = true;
+    }
+
+    // Mise à jour des styles et du message d'erreur
+    if (!isValid) {
+        phoneInput.style.borderColor = 'red';
+        phoneInput.style.backgroundColor = '#ffe6e6';
+        errorMessage.innerText = `⛔ Format attendu : ${formatExample}`;
+        errorMessage.style.display = 'inline';
+    } else {
+        phoneInput.style.borderColor = '';
+        phoneInput.style.backgroundColor = '';
+        errorMessage.style.display = 'none';
+    }
+}
+
+
 
 let experienceCounter = 0;
 let educationCounter = 0;
@@ -293,3 +370,40 @@ function updateLanguages() {
     }
 }
 
+
+
+// Importation de html2canvas et jsPDF si nécessaire
+// Assurez-vous d'inclure ces bibliothèques dans votre projet
+// <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+// <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+// document.addEventListener("DOMContentLoaded", function () {
+//     let downloadBtn = document.createElement("button");
+//     downloadBtn.innerHTML = "⬇ Télécharger CV";
+//     downloadBtn.style.position = "fixed";
+//     downloadBtn.style.bottom = "20px";
+//     downloadBtn.style.right = "20px";
+//     downloadBtn.style.background = "#007bff";
+//     downloadBtn.style.color = "white";
+//     downloadBtn.style.padding = "10px 15px";
+//     downloadBtn.style.border = "none";
+//     downloadBtn.style.borderRadius = "5px";
+//     downloadBtn.style.cursor = "pointer";
+//     downloadBtn.style.fontSize = "16px";
+//     document.body.appendChild(downloadBtn);
+
+//     downloadBtn.addEventListener("click", function () {
+//         const element = document.getElementById('cvPreview'); // La section à convertir en PDF
+
+//     html2pdf()
+//         .set({
+//             margin: 10,
+//             filename: 'Mon_CV.pdf',
+//             image: { type: 'jpeg', quality: 0.98 },
+//             html2canvas: { scale: 2 },
+//             jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+//         })
+//         .from(element)
+//         .save();
+//     });
+// });
