@@ -51,7 +51,7 @@
                 <input type="number" id="phone" placeholder="Téléphone" class="w-full mt-2 p-2 border rounded" oninput="updateCV()">
                 <label for="name">Adresse</label><br>
                 <input type="text" id="address" placeholder="Adresse" class="w-full mt-2 p-2 border rounded" oninput="updateCV()">
-                <input type="file" id="profilePicture" class="w-full p-2 border rounded" accept="image/*" onchange="updateProfilePicture(event)">
+                <input type="file" id="profileImage" name="profileImage" accept="image/*" class="mt-1 block w-full border rounded p-2" onchange="loadImage(event)">
 
                 <h2 class="text-2xl text-gray-800 mt-6 mb-5">Expériences Professionnelles</h2>
                 <div id="experiencesSection" class="shadow-md p-10">
@@ -70,7 +70,7 @@
                         </div>
                     </div>
                     <label for="description">Description</label><br>
-                    <textarea id="description" placeholder="Décrivez votre métier..." class="w-full mt-2 p-2 border rounded" oninput="updateCV()"></textarea>
+                    <textarea id="description" placeholder="Décrivez votre métier..." class="w-full mt-2 p-2 border rounded" oninput="updateCV()"></textarea>    
                 </div>
                 <button type="button" onclick="addExperience()" class="bg-green-500 text-white p-2 rounded">Ajouter Expérience</button>
 
@@ -94,20 +94,21 @@
                 <button type="button" onclick="addEducation()" class="bg-green-500 text-white p-2 rounded">Ajouter Formation</button>
 
                 <h2 class="text-xl font-semibold mt-6 mb-5">Ajouter des compétences</h2>
-                <div id="SkillsSection">
+                <div id="Ajoutcompetence">
                     <div class="mb-4 flex items-center">
                         <input type="text" name="competences" class="mt-1 w-full block border border-gray-300 rounded p-2" placeholder="Ajouter des compétences" required>
-                        <button type="button" class="ml-2 bg-green-500 text-white py-2 px-4 rounded" onclick="addskills()">+</button>
                     </div>
                 </div>
+                <button type="button" class="ml-2 bg-green-500 text-white py-2 px-4 rounded" onclick="ajoutcompetences()">+</button>
+                    
 
                 <h2 class="text-xl font-semibold mt-6 mb-5">Centres d'Intérêt</h2>
                 <div id="InterestSection">
                     <div class="mb-4 flex items-center">
                         <input type="text" name="interest" class="mt-1 w-full block border border-gray-300 rounded p-2" placeholder="Centre d'Intérêt" required>
-                        <button type="button" class="ml-2 bg-green-500 text-white py-2 px-4 rounded" onclick="addInterest()">+</button>
                     </div>
                 </div>
+                <button type="button" class="ml-2 bg-green-500 text-white py-2 px-4 rounded" onclick="addInterest()">+</button>
 
                 <h2 class="text-xl font-semibold mt-6 mb-5">Références</h2>
                 <div id="referencesSection">
@@ -115,9 +116,9 @@
                         <input type="text" name="referenceName" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Nom" required>
                         <input type="text" name="referencePosition" class="mt-1 block w-1/4 border border-gray-300 rounded p-2" placeholder="Poste" required>
                         <input type="text" name="referenceContact" class="mt-1 block w-1/2 border border-gray-300 rounded p-2" placeholder="Contact" required>
-                        <button type="button" class="ml-2 bg-green-500 text-white py-2 px-4 rounded" onclick="addReference()">+</button>
                     </div>
                 </div>
+                <button type="button" class="ml-2 bg-green-500 text-white py-2 px-4 rounded" onclick="addReference()">+</button>
 
                 <h2 class="text-xl font-semibold">Langues</h2>
                 <div id="languageFields"></div>
@@ -131,7 +132,9 @@
         <div class="bg-[#BFECFF] rounded-lg shadow-md">
             <div>
                 <div class="header">
-                    <img src="https://placehold.co/250x250" alt="Profile Photo" class="profile-photo">
+                    <div>
+                        <img id="previewImage" src="profil.jpg" alt="Image de Profil" class="profile-photo">
+                    </div>
                     <div class="header-text">
                         <h1><span id="previewFullName">NOM</span><br><span id="previewFirstName">PRÉNOM</span></h1>
                         <h2><span id="previewJobTitle">Titre du poste</span></h2>
